@@ -88,11 +88,62 @@ void Workload::addWorkload(const string &filename) {
     system("pause");
 }
 
+// Функция для центрирования текста
+std::string center(const std::string& text, int width) {
+    int padding = width - text.size();
+    int padLeft = padding / 2;
+    int padRight = padding - padLeft;
+    return std::string(padLeft, ' ') + text + std::string(padRight, ' ');
+}
+
 void Workload::displayWorkloads(const string &filename) {
     system("cls");
     vector<Workload> workloads = readWorkloads(filename);
+    //
+    std::vector<int> widths = {3, 40, 12, 5, 25, 25, 25, 25, 45, 8, 6};
+    // Печать заголовков таблицы
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
 
-    cout << "+"
+    std::vector<std::string> headers = {"id", "FIO", "Phone", "Exp", "Degree", "Title", "Department", "Position", "Subject", "Workload", "Public"};
+    std::cout << "|";
+    for (size_t i = 0; i < headers.size(); ++i) {
+        std::cout << center(headers[i], widths[i]) << "|";
+    }
+    std::cout << "\n";
+
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
+    // Печать данных таблицы
+    for (const auto& workload : workloads) {
+        std::cout << "|";
+        std::cout << center(std::to_string(workload.id), widths[0]) << "|"
+                  << center(workload.fio, widths[1]) << "|"
+                  << center(workload.phone, widths[2]) << "|"
+                  << center(std::to_string(workload.experience), widths[3]) << "|"
+                  << center(workload.degree, widths[4]) << "|"
+                  << center(workload.title, widths[5]) << "|"
+                  << center(workload.department, widths[6]) << "|"
+                  << center(workload.position, widths[7]) << "|"
+                  << center(workload.subject, widths[8]) << "|"
+                  << center(std::to_string(workload.workload), widths[9]) << "|"
+                  << center(std::to_string(workload.publications), widths[10]) << "|\n";
+
+        std::cout << "+";
+        for (const auto& width : widths) {
+            std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+        }
+        std::cout << std::setfill(' ') << "\n";
+    }
+    //
+
+    /*cout << "+"
          << "---" << "+"
          << "----------------------------------------" << "+"
          << "------------" << "+"
@@ -160,7 +211,7 @@ void Workload::displayWorkloads(const string &filename) {
              << "--------" << "+"
              << "------" << "+"
              << "\n";
-    }
+    }*/
     system("pause");
 }
 
