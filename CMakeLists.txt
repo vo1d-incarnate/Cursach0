@@ -13,3 +13,4 @@ add_executable(Cursach0 main.cpp
         center.cpp
         center.cpp
         center.h)
+target_link_libraries(Cursach0 ${CMAKE_EXE_LINKER_FLAGS})
