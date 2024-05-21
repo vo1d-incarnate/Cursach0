@@ -68,7 +68,7 @@ void Position::displayPositions(const string &filename) {
     vector<Position> positions = readPositions(filename);
     //
     // Массив с шириной полей
-    std::vector<int> widths = {3, 25, 19, 6};
+    std::vector<int> widths = {3, 25, 40, 6};
     // Печать заголовков таблицы
     std::cout << "+";
     for (const auto& width : widths) {

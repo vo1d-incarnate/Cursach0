@@ -65,7 +65,7 @@ void Subject::displaySubjects(const string &filename) {
 
     //
     // Массив с шириной полей
-    std::vector<int> widths = {3, 25, 5};
+    std::vector<int> widths = {3, 30, 5};
     // Печать заголовков таблицы
     std::cout << "+";
     for (const auto& width : widths) {
@@ -98,38 +98,6 @@ void Subject::displaySubjects(const string &filename) {
         }
         std::cout << std::setfill(' ') << "\n";
     }
-    //
-    /*cout << "+"
-         << "---" << "+"
-         << "-------------------------" << "+"
-         << "-------"<< "+"
-         << "\n";
-
-    cout << "|"
-         << std::left << std::setw(3) << "id" << "|"
-         << std::left << std::setw(25) << "Name" << "|"
-         << std::left << std::setw(7) << "Hours" << "|"
-         << "\n";
-
-    cout << "+"
-         << "---" << "+"
-         << "-------------------------" << "+"
-         << "-------"<< "+"
-         << "\n";
-
-    for (const auto& subject : subjects) {
-        cout << "|"
-             << std::left << std::setw(3) << subject.id << "|"
-             << std::left << std::setw(25) << subject.name << "|"
-             << std::left << std::setw(7) << subject.hours << "|"
-             << "\n";
-
-        cout << "+"
-             << "---" << "+"
-             << "-------------------------" << "+"
-             << "-------"<< "+"
-             << "\n";
-    }*/
     system("pause");
 }
 
