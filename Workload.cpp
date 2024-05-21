@@ -55,16 +55,42 @@ void Workload::writeWorkloads(const string &filename, const vector<Workload> &wo
         file.close();
     }
 }
-
+bool hasOnlyDigits(const std::string &str) {
+    for (char c : str) {
+        if (!isdigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
 void Workload::addWorkload(const string &filename) {
     system("cls");
     vector<Workload> workloads = readWorkloads(filename);
     Workload workload;
+    string tmp;
     cout << "Введите ID: ";
-    cin >> workload.id;
     cin.ignore();
+    while (true) {
+        getline(cin, tmp);
+        if (tmp.empty()) {
+            cout << "Ошибка ввода. Пожалуйста, введите непустое значение: ";
+        } else {
+            if (hasOnlyDigits(tmp)) {
+                break;
+            } else {
+                std::cout << "В строке есть символы, не являющиеся цифрами. Введите цифру: ";
+            }
+        }
+    }
+    workload.id = stoi(tmp);
+    tmp.clear();
     cout << "Введите ФИО: ";
-    getline(cin, workload.fio);
+    while (true) {
+        getline(cin, workload.fio);
+        if (workload.fio.empty()) {
+            cout << "Ошибка ввода. Пожалуйста, введите непустое значение: ";
+        } else break;
+    }
     cout << "Введите телефон: ";
     getline(cin, workload.phone);
     cout << "Введите стаж: ";
