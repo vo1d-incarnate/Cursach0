@@ -8,6 +8,7 @@
 #include <iomanip> // Для форматирования вывода
 #include <algorithm> // Для использования алгоритмов STL
 #include "Workload.h" // Заголовочный файл класса
+#include "center.h" // Функция для центрирования текста
 
 vector<Workload> Workload::readWorkloads(const string &filename) {
     system("cls");
@@ -88,19 +89,11 @@ void Workload::addWorkload(const string &filename) {
     system("pause");
 }
 
-// Функция для центрирования текста
-std::string center(const std::string& text, int width) {
-    int padding = width - text.size();
-    int padLeft = padding / 2;
-    int padRight = padding - padLeft;
-    return std::string(padLeft, ' ') + text + std::string(padRight, ' ');
-}
-
 void Workload::displayWorkloads(const string &filename) {
     system("cls");
     vector<Workload> workloads = readWorkloads(filename);
-    //
-    std::vector<int> widths = {3, 40, 12, 5, 25, 25, 25, 25, 45, 8, 6};
+    // Массив с шириной полей
+    std::vector<int> widths = {3, 40, 12, 5, 25, 25, 25, 25, 45, 8, 10};
     // Печать заголовков таблицы
     std::cout << "+";
     for (const auto& width : widths) {
@@ -108,7 +101,7 @@ void Workload::displayWorkloads(const string &filename) {
     }
     std::cout << std::setfill(' ') << "\n";
 
-    std::vector<std::string> headers = {"id", "FIO", "Phone", "Exp", "Degree", "Title", "Department", "Position", "Subject", "Workload", "Public"};
+    std::vector<std::string> headers = {"id", "ФИО", "Телефон", "Стаж", "Научная степень", "Звание", "Кафедра", "Должность", "Предмет(ы)", "Нагрузка", "Публикации"};
     std::cout << "|";
     for (size_t i = 0; i < headers.size(); ++i) {
         std::cout << center(headers[i], widths[i]) << "|";
@@ -141,77 +134,6 @@ void Workload::displayWorkloads(const string &filename) {
         }
         std::cout << std::setfill(' ') << "\n";
     }
-    //
-
-    /*cout << "+"
-         << "---" << "+"
-         << "----------------------------------------" << "+"
-         << "------------" << "+"
-         << "-----" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "--------" << "+"
-         << "------" << "+"
-         << "\n";
-    cout << "|"
-         << std::left << std::setw(3) << "id" << "|"
-         << std::left << std::setw(40) << "FIO" << "|"
-         << std::left << std::setw(12) << "Phone" << "|"
-         << std::left << std::setw(5) << "Exp" << "|"
-         << std::left << std::setw(25) << "Degree" << "|"
-         << std::left << std::setw(25) << "Title" << "|"
-         << std::left << std::setw(25) << "Department" << "|"
-         << std::left << std::setw(25) << "Position" << "|"
-         << std::left << std::setw(25) << "Subject" << "|"
-         << std::left << std::setw(8) << "Workload" << "|"
-         << std::left << std::setw(6) << "Public" << "|"
-         << "\n";
-
-    cout << "+"
-         << "---" << "+"
-         << "----------------------------------------" << "+"
-         << "------------" << "+"
-         << "-----" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "-------------------------" << "+"
-         << "--------" << "+"
-         << "------" << "+"
-         << "\n";
-
-    for (const auto& workload : workloads) {
-        cout << "|"
-             << std::left << std::setw(3) << workload.id << "|"
-             << std::left << std::setw(40) << workload.fio << "|"
-             << std::left << std::setw(12) << workload.phone << "|"
-             << std::left << std::setw(5) << workload.experience << "|"
-             << std::left << std::setw(25) << workload.degree << "|"
-             << std::left << std::setw(25) << workload.title << "|"
-             << std::left << std::setw(25) << workload.department << "|"
-             << std::left << std::setw(25) << workload.position << "|"
-             << std::left << std::setw(25) << workload.subject << "|"
-             << std::left << std::setw(8) << workload.workload << "|"
-             << std::left << std::setw(6) << workload.publications << "|"
-             << "\n";
-        cout << "+"
-             << "---" << "+"
-             << "----------------------------------------" << "+"
-             << "------------" << "+"
-             << "-----" << "+"
-             << "-------------------------" << "+"
-             << "-------------------------" << "+"
-             << "-------------------------" << "+"
-             << "-------------------------" << "+"
-             << "-------------------------" << "+"
-             << "--------" << "+"
-             << "------" << "+"
-             << "\n";
-    }*/
     system("pause");
 }
 

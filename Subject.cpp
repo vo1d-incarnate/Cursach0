@@ -8,6 +8,7 @@
 #include <iomanip> // Для форматирования вывода
 #include <algorithm> // Для использования алгоритмов STL
 #include "Subject.h" // Заголовочный файл класса
+#include "center.h" // Функция для центрирования текста
 
 vector<Subject> Subject::readSubjects(const string &filename) {
     system("cls");
@@ -62,7 +63,43 @@ void Subject::displaySubjects(const string &filename) {
     system("cls");
     vector<Subject> subjects = readSubjects(filename);
 
-    cout << "+"
+    //
+    // Массив с шириной полей
+    std::vector<int> widths = {3, 25, 5};
+    // Печать заголовков таблицы
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
+
+    std::vector<std::string> headers = {"id", "Предмет", "Часы"};
+    std::cout << "|";
+    for (size_t i = 0; i < headers.size(); ++i) {
+        std::cout << center(headers[i], widths[i]) << "|";
+    }
+    std::cout << "\n";
+
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
+    // Печать данных таблицы
+    for (const auto& subject : subjects) {
+        std::cout << "|";
+        std::cout << center(std::to_string(subject.id), widths[0]) << "|"
+                  << center(subject.name, widths[1]) << "|"
+                  << center(std::to_string(subject.hours), widths[2]) << "|\n";
+
+        std::cout << "+";
+        for (const auto& width : widths) {
+            std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+        }
+        std::cout << std::setfill(' ') << "\n";
+    }
+    //
+    /*cout << "+"
          << "---" << "+"
          << "-------------------------" << "+"
          << "-------"<< "+"
@@ -92,7 +129,7 @@ void Subject::displaySubjects(const string &filename) {
              << "-------------------------" << "+"
              << "-------"<< "+"
              << "\n";
-    }
+    }*/
     system("pause");
 }
 

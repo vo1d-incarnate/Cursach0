@@ -9,4 +9,7 @@ add_executable(Cursach0 main.cpp
         Position.cpp
         Position.h
         Subject.cpp
-        Subject.h)
+        Subject.h
+        center.cpp
+        center.cpp
+        center.h)

@@ -8,6 +8,8 @@
 #include <iomanip> // Для форматирования вывода
 #include <algorithm> // Для использования алгоритмов STL
 #include "Position.h" // Заголовочный файл класса
+#include "center.h" // Функция для центрирования текста
+
 
 vector<Position> Position::readPositions(const string &filename) {
     system("cls");
@@ -64,23 +66,41 @@ void Position::addPosition(const string &filename) {
 void Position::displayPositions(const string &filename) {
     system("cls");
     vector<Position> positions = readPositions(filename);
-    cout << "+" << "---" << "+" << "-------------------------" << "+" << "-------------------" << "+" << "-----" << "+" << "\n";
-    cout << "|"
-         << std::left << std::setw(3) << "id"<< "|"
-         << std::left << std::setw(25) << "Name" << "|"
-         << std::left << std::setw(19) << "Department" << "|"
-         << std::left << std::setw(5) << "Count" << "|"
-         << "\n";
-    cout << "+" << "---" << "+" << "-------------------------" << "+" << "-------------------" << "+" << "-----" << "+" << "\n";
+    //
+    // Массив с шириной полей
+    std::vector<int> widths = {3, 25, 19, 6};
+    // Печать заголовков таблицы
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
+
+    std::vector<std::string> headers = {"id", "Должность", "Кафедра", "Кол-во"};
+    std::cout << "|";
+    for (size_t i = 0; i < headers.size(); ++i) {
+        std::cout << center(headers[i], widths[i]) << "|";
+    }
+    std::cout << "\n";
+
+    std::cout << "+";
+    for (const auto& width : widths) {
+        std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+    }
+    std::cout << std::setfill(' ') << "\n";
+    // Печать данных таблицы
     for (const auto& position : positions) {
-        cout << "|"
-             << std::left << std::setw(3) << position.id << "|"
-             << std::left << std::setw(25) << position.name << "|"
-             << std::left << std::setw(19) << position.department << "|"
-             << std::left << std::setw(5) << position.quantity << "|"
-             << "\n";
-        // --------------------------------------------------
-        cout << "+" << "---" << "+" << "-------------------------" << "+" << "-------------------" << "+" << "-----" << "+" << "\n";
+        std::cout << "|";
+        std::cout << center(std::to_string(position.id), widths[0]) << "|"
+                  << center(position.name, widths[1]) << "|"
+                  << center(position.department, widths[2]) << "|"
+                  << center(std::to_string(position.quantity), widths[3]) << "|\n";
+
+        std::cout << "+";
+        for (const auto& width : widths) {
+            std::cout << std::setfill('-') << std::setw(width) << "" << "+";
+        }
+        std::cout << std::setfill(' ') << "\n";
     }
     system("pause");
 }
