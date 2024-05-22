@@ -9,6 +9,7 @@
 #include <algorithm> // Для использования алгоритмов STL
 #include "Workload.h" // Заголовочный файл класса
 #include "center.h" // Функция для центрирования текста
+#include "hasOnlyDigits.h" // Функция для проверки имеет ли строка только цифры
 
 vector<Workload> Workload::readWorkloads(const string &filename) {
     system("cls");
@@ -55,14 +56,7 @@ void Workload::writeWorkloads(const string &filename, const vector<Workload> &wo
         file.close();
     }
 }
-bool hasOnlyDigits(const std::string &str) {
-    for (char c : str) {
-        if (!isdigit(c)) {
-            return false;
-        }
-    }
-    return true;
-}
+
 void Workload::addWorkload(const string &filename) {
     system("cls");
     vector<Workload> workloads = readWorkloads(filename);

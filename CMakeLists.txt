@@ -12,5 +12,7 @@ add_executable(Cursach0 main.cpp
         Subject.h
         center.cpp
         center.cpp
-        center.h)
+        center.h
+        hasOnlyDigits.cpp
+        hasOnlyDigits.h)
 target_link_libraries(Cursach0 ${CMAKE_EXE_LINKER_FLAGS})
