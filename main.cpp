@@ -8,8 +8,10 @@
 
 using namespace std;
 
-void workloadMenu(string filename) {
-    //string filename = "workloads.txt";
+void workloadMenu() {
+    sting filename;
+    cout << "введите имя файла";
+    cin >> filename;
 
     int choice;
     do {
@@ -149,10 +151,6 @@ int main() {
     SetConsoleOutputCP (1251);
     setlocale(LC_ALL, "Russian");
 
-    sting filename;
-    cout << "введите имя файла";
-    cin >> filename;
-
 
     int choice;
     while (true) {
@@ -175,7 +173,7 @@ int main() {
         }
 
         if (choice == 1) {
-            workloadMenu(filename);
+            workloadMenu();
         } else if (choice == 2) {
             positionMenu();
         } else if (choice == 3) {
