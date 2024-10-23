@@ -1,33 +1,33 @@
-#include <iostream>  // Для ввода/вывода данных через консоль
-#include <string>    // Для работы со строками
-#include <Windows.h> // Для использования функций операционной системы (в данном случае для очистки экрана)
-#include <limits> // Для работы с границами числовых типов
-#include "Workload.h" // Заголовочный файл класса
-#include "Position.h" // Заголовочный файл класса
-#include "Subject.h" // Заголовочный файл класса
+#include <iostream>  // Г„Г«Гї ГўГўГ®Г¤Г /ГўГ»ГўГ®Г¤Г  Г¤Г Г­Г­Г»Гµ Г·ГҐГ°ГҐГ§ ГЄГ®Г­Г±Г®Г«Гј
+#include <string>    // Г„Г«Гї Г°Г ГЎГ®ГІГ» Г±Г® Г±ГІГ°Г®ГЄГ Г¬ГЁ
+#include <Windows.h> // Г„Г«Гї ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГї ГґГіГ­ГЄГ¶ГЁГ© Г®ГЇГҐГ°Г Г¶ГЁГ®Г­Г­Г®Г© Г±ГЁГ±ГІГҐГ¬Г» (Гў Г¤Г Г­Г­Г®Г¬ Г±Г«ГіГ·Г ГҐ Г¤Г«Гї Г®Г·ГЁГ±ГІГЄГЁ ГЅГЄГ°Г Г­Г )
+#include <limits> // Г„Г«Гї Г°Г ГЎГ®ГІГ» Г± ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ Г·ГЁГ±Г«Г®ГўГ»Гµ ГІГЁГЇГ®Гў
+#include "Workload.h" // Г‡Г ГЈГ®Г«Г®ГўГ®Г·Г­Г»Г© ГґГ Г©Г« ГЄГ«Г Г±Г±Г 
+#include "Position.h" // Г‡Г ГЈГ®Г«Г®ГўГ®Г·Г­Г»Г© ГґГ Г©Г« ГЄГ«Г Г±Г±Г 
+#include "Subject.h" // Г‡Г ГЈГ®Г«Г®ГўГ®Г·Г­Г»Г© ГґГ Г©Г« ГЄГ«Г Г±Г±Г 
 
 using namespace std;
 
-void workloadMenu() {
-    string filename = "workloads.txt";
+void workloadMenu(string filename) {
+    //string filename = "workloads.txt";
 
     int choice;
     do {
         system("cls");
-        cout << "Учебная нагрузка:\n";
-        cout << "1. Добавить запись\n";
-        cout << "2. Просмотреть записи\n";
-        cout << "3. Обновить запись\n";
-        cout << "4. Удалить запись\n";
-        cout << "5. Назад\n";
-        cout << "Выберите опцию: ";
+        cout << "Г“Г·ГҐГЎГ­Г Гї Г­Г ГЈГ°ГіГ§ГЄГ :\n";
+        cout << "1. Г„Г®ГЎГ ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "2. ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г§Г ГЇГЁГ±ГЁ\n";
+        cout << "3. ГЋГЎГ­Г®ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "4. Г“Г¤Г Г«ГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "5. ГЌГ Г§Г Г¤\n";
+        cout << "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г®ГЇГ¶ГЁГѕ: ";
 
         cin >> choice;
         if (cin.fail()) {
-            cin.clear(); // Очистка состояния ошибки
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорирует остальную часть входных данных
+            cin.clear(); // ГЋГ·ГЁГ±ГІГЄГ  Г±Г®Г±ГІГ®ГїГ­ГЁГї Г®ГёГЁГЎГЄГЁ
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Г€ГЈГ­Г®Г°ГЁГ°ГіГҐГІ Г®Г±ГІГ Г«ГјГ­ГіГѕ Г·Г Г±ГІГј ГўГµГ®Г¤Г­Г»Гµ Г¤Г Г­Г­Г»Гµ
             system("cls");
-            cout << "Неверный выбор! Пожалуйста, введите цифру." << endl;
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°! ГЏГ®Г¦Г Г«ГіГ©Г±ГІГ , ГўГўГҐГ¤ГЁГІГҐ Г¶ГЁГґГ°Гі." << endl;
             system("pause");
             continue;
         }
@@ -38,18 +38,18 @@ void workloadMenu() {
             Workload::displayWorkloads(filename);
         } else if (choice == 3) {
             int id;
-            cout << "Введите ID записи для обновления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї: ";
             cin >> id;
             Workload::updateWorkload(filename, id);
         } else if (choice == 4) {
             int id;
-            cout << "Введите ID записи для удаления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї: ";
             cin >> id;
             Workload::deleteWorkload(filename, id);
         } else if (choice == 5) {
             // Do nothing
         } else {
-            cout << "Неверный выбор!\n";
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°!\n";
         }
     } while (choice != 5);
 }
@@ -59,20 +59,20 @@ void positionMenu() {
     int choice;
     do {
         system("cls");
-        cout << "Должности:\n";
-        cout << "1. Добавить запись\n";
-        cout << "2. Просмотреть записи\n";
-        cout << "3. Обновить запись\n";
-        cout << "4. Удалить запись\n";
-        cout << "5. Назад\n";
-        cout << "Выберите опцию: ";
+        cout << "Г„Г®Г«Г¦Г­Г®Г±ГІГЁ:\n";
+        cout << "1. Г„Г®ГЎГ ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "2. ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г§Г ГЇГЁГ±ГЁ\n";
+        cout << "3. ГЋГЎГ­Г®ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "4. Г“Г¤Г Г«ГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "5. ГЌГ Г§Г Г¤\n";
+        cout << "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г®ГЇГ¶ГЁГѕ: ";
 
         cin >> choice;
         if (cin.fail()) {
-            cin.clear(); // Очистка состояния ошибки
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорирует остальную часть входных данных
+            cin.clear(); // ГЋГ·ГЁГ±ГІГЄГ  Г±Г®Г±ГІГ®ГїГ­ГЁГї Г®ГёГЁГЎГЄГЁ
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Г€ГЈГ­Г®Г°ГЁГ°ГіГҐГІ Г®Г±ГІГ Г«ГјГ­ГіГѕ Г·Г Г±ГІГј ГўГµГ®Г¤Г­Г»Гµ Г¤Г Г­Г­Г»Гµ
             system("cls");
-            cout << "Неверный выбор! Пожалуйста, введите цифру." << endl;
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°! ГЏГ®Г¦Г Г«ГіГ©Г±ГІГ , ГўГўГҐГ¤ГЁГІГҐ Г¶ГЁГґГ°Гі." << endl;
             system("pause");
             continue;
         }
@@ -83,18 +83,18 @@ void positionMenu() {
             Position::displayPositions(filename);
         } else if (choice == 3) {
             int id;
-            cout << "Введите ID записи для обновления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї: ";
             cin >> id;
             Position::updatePosition(filename, id);
         } else if (choice == 4) {
             int id;
-            cout << "Введите ID записи для удаления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї: ";
             cin >> id;
             Position::deletePosition(filename, id);
         } else if (choice == 5) {
             // Do nothing
         } else {
-            cout << "Неверный выбор!\n";
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°!\n";
         }
     } while (choice != 5);
 }
@@ -104,20 +104,20 @@ void subjectMenu() {
     int choice;
     do {
         system("cls");
-        cout << "Предметы:\n";
-        cout << "1. Добавить запись\n";
-        cout << "2. Просмотреть записи\n";
-        cout << "3. Обновить запись\n";
-        cout << "4. Удалить запись\n";
-        cout << "5. Назад\n";
-        cout << "Выберите опцию: ";
+        cout << "ГЏГ°ГҐГ¤Г¬ГҐГІГ»:\n";
+        cout << "1. Г„Г®ГЎГ ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "2. ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г§Г ГЇГЁГ±ГЁ\n";
+        cout << "3. ГЋГЎГ­Г®ГўГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "4. Г“Г¤Г Г«ГЁГІГј Г§Г ГЇГЁГ±Гј\n";
+        cout << "5. ГЌГ Г§Г Г¤\n";
+        cout << "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г®ГЇГ¶ГЁГѕ: ";
 
         cin >> choice;
         if (cin.fail()) {
-            cin.clear(); // Очистка состояния ошибки
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорирует остальную часть входных данных
+            cin.clear(); // ГЋГ·ГЁГ±ГІГЄГ  Г±Г®Г±ГІГ®ГїГ­ГЁГї Г®ГёГЁГЎГЄГЁ
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Г€ГЈГ­Г®Г°ГЁГ°ГіГҐГІ Г®Г±ГІГ Г«ГјГ­ГіГѕ Г·Г Г±ГІГј ГўГµГ®Г¤Г­Г»Гµ Г¤Г Г­Г­Г»Гµ
             system("cls");
-            cout << "Неверный выбор! Пожалуйста, введите цифру." << endl;
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°! ГЏГ®Г¦Г Г«ГіГ©Г±ГІГ , ГўГўГҐГ¤ГЁГІГҐ Г¶ГЁГґГ°Гі." << endl;
             system("pause");
             continue;
         }
@@ -128,18 +128,18 @@ void subjectMenu() {
             Subject::displaySubjects(filename);
         } else if (choice == 3) {
             int id;
-            cout << "Введите ID записи для обновления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї: ";
             cin >> id;
             Subject::updateSubject(filename, id);
         } else if (choice == 4) {
             int id;
-            cout << "Введите ID записи для удаления: ";
+            cout << "Г‚ГўГҐГ¤ГЁГІГҐ ID Г§Г ГЇГЁГ±ГЁ Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї: ";
             cin >> id;
             Subject::deleteSubject(filename, id);
         } else if (choice == 5) {
             // Do nothing
         } else {
-            cout << "Неверный выбор!\n";
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°!\n";
         }
     } while(choice != 5);
 }
@@ -149,28 +149,33 @@ int main() {
     SetConsoleOutputCP (1251);
     setlocale(LC_ALL, "Russian");
 
+    sting filename;
+    cout << "РІРІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р°";
+    cin >> filename;
+
+
     int choice;
     while (true) {
         system("cls");
-        cout << "Меню:\n";
-        cout << "1. Учебная нагрузка\n";
-        cout << "2. Должности\n";
-        cout << "3. Предметы\n";
-        cout << "4. Выход\n";
-        cout << "Выберите опцию: ";
+        cout << "ГЊГҐГ­Гѕ:\n";
+        cout << "1. Г“Г·ГҐГЎГ­Г Гї Г­Г ГЈГ°ГіГ§ГЄГ \n";
+        cout << "2. Г„Г®Г«Г¦Г­Г®Г±ГІГЁ\n";
+        cout << "3. ГЏГ°ГҐГ¤Г¬ГҐГІГ»\n";
+        cout << "4. Г‚Г»ГµГ®Г¤\n";
+        cout << "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г®ГЇГ¶ГЁГѕ: ";
 
         cin >> choice;
         if (cin.fail()) {
-            cin.clear(); // Очистка состояния ошибки
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорирует остальную часть входных данных
+            cin.clear(); // ГЋГ·ГЁГ±ГІГЄГ  Г±Г®Г±ГІГ®ГїГ­ГЁГї Г®ГёГЁГЎГЄГЁ
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Г€ГЈГ­Г®Г°ГЁГ°ГіГҐГІ Г®Г±ГІГ Г«ГјГ­ГіГѕ Г·Г Г±ГІГј ГўГµГ®Г¤Г­Г»Гµ Г¤Г Г­Г­Г»Гµ
             system("cls");
-            cout << "Неверный выбор! Пожалуйста, введите цифру." << endl;
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°! ГЏГ®Г¦Г Г«ГіГ©Г±ГІГ , ГўГўГҐГ¤ГЁГІГҐ Г¶ГЁГґГ°Гі." << endl;
             system("pause");
             continue;
         }
 
         if (choice == 1) {
-            workloadMenu();
+            workloadMenu(filename);
         } else if (choice == 2) {
             positionMenu();
         } else if (choice == 3) {
@@ -178,7 +183,7 @@ int main() {
         } else if (choice == 4) {
             return 0;
         } else {
-            cout << "Неверный выбор!\n";
+            cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°!\n";
         }
 
         /*switch (choice) {
@@ -195,7 +200,7 @@ int main() {
                 break;
             }
             case 4: return 0;
-            default: cout << "Неверный выбор!\n"; break;
+            default: cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГўГ»ГЎГ®Г°!\n"; break;
         }*/
     }
     return 0;
